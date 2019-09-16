@@ -18,11 +18,11 @@ Using GMail SMTP Server you can send E-mails to any domain using your Gmail Cred
   - Turn ON the **Less Secure App Access** or [Click Here](https://myaccount.google.com/u/0/lesssecureapps)
 
 ![Google Account Security Settings](https://i.imgur.com/6Hxmb2G.png))
-![Less Secure App Access](https://i.imgur.com/mEGa22F.png)
+![Less Secure App Access](https://i.imgur.com/hymkYJ6.png)
 
 + For security precaution, Google may require you to complete this additional step while signing-in. [Click Here](https://accounts.google.com/DisplayUnlockCaptcha) to Allow access to your Google account using new Device/App.
 
-![New Device-App](https://i.imgur.com/hymkYJ6.png)
+![New Device-App](https://i.imgur.com/mEGa22F.png)
 
 ==**Note**: It may take an hour or more to reflect this security changes==
 
