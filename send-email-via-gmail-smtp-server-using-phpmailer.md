@@ -20,11 +20,19 @@ Using GMail SMTP Server you can send E-mails to any domain using your Gmail Cred
 ![Google Account Security Settings](https://i.imgur.com/6Hxmb2G.png))
 ![Less Secure App Access](https://i.imgur.com/hymkYJ6.png)
 
+<br>
+
++ If **2-Step-Verification** is Enabled, then you will have to create APP Password for your application or device.
+![2-Step Virification Enabled](https://i.imgur.com/vcQYoGo.png)
+![Generate App Password](https://i.imgur.com/LHfCxdH.png)
+
+<br>
+
 + For security precaution, Google may require you to complete this additional step while signing-in. [Click Here](https://accounts.google.com/DisplayUnlockCaptcha) to Allow access to your Google account using new Device/App.
 
 ![New Device-App](https://i.imgur.com/mEGa22F.png)
 
-==**Note**: It may take an hour or more to reflect this security changes==
+==**Note**: It may take an hour or more to reflect any security changes==
 
 <br>
 
