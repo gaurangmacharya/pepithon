@@ -39,7 +39,7 @@ attach  : A list of path-names of files to attach to the message. Attached files
 ```
 
 
-**Example:1 With minimum parameters without attachement**
+**Example-1: With minimum parameters without attachement**
 
 ``` yml
 - hosts:
@@ -57,7 +57,7 @@ attach  : A list of path-names of files to attach to the message. Attached files
       delegate_to: localhost
 ```
 
-**Example:2 Sending Report as attachment using In-House SMTP Server**
+**Example-2: Sending Report as attachment using In-House SMTP Server**
 ``` yml
 - hosts:
     - localhost
