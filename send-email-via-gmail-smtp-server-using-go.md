@@ -21,7 +21,7 @@ Following is explanation about parameters needs to be passed.
 
 Before sending Emails using Gmail SMTP Server, Change the required setting using Google Account Security Settings or [Click Here](https://myaccount.google.com/security)
 
-1. Make sure that **2-Step-Verification** is Enabled
+++Step 1:++ Make sure that **2-Step-Verification** is Enabled
 
 ++Screen: Google Account Security Settings 2-Step-Verification is Disabled++
 ![Google Account Security Settings 2-Step-Verification is Disabled](https://i.imgur.com/6Hxmb2G.png)
@@ -30,15 +30,15 @@ Before sending Emails using Gmail SMTP Server, Change the required setting using
 ![Google Account Security Settings 2-Step-Verification Enabled](https://i.imgur.com/vcQYoGo.png)
 
 
-2. Turn ON/OFF to toggle the **Less Secure App Access** or [Click Here](https://myaccount.google.com/u/0/lesssecureapps)
+++Step 2:++ Turn ON/OFF to toggle the **Less Secure App Access** or [Click Here](https://myaccount.google.com/u/0/lesssecureapps)
 
 ![Less Secure App Access](https://i.imgur.com/mEGa22F.png)
 
-3. Create APP Password for your application or device.
+++Step 3:++ Create APP Password for your application or device.
 
 ![Generate App Password](https://i.imgur.com/LHfCxdH.png)
 
-4. For security precaution, Google may require you to complete this additional step while signing-in. [Click Here](https://accounts.google.com/DisplayUnlockCaptcha) to Allow access to your Google account using new Device/App.
+++Step 4:++ For security precaution, Google may require you to complete this additional step while signing-in. [Click Here](https://accounts.google.com/DisplayUnlockCaptcha) to Allow access to your Google account using new Device/App.
 
 ![New Device-App](https://i.imgur.com/hymkYJ6.png)
 
