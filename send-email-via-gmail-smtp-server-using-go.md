@@ -63,56 +63,72 @@ Following are some of errors which you may get from Gmail SMTP Module
 5.1.2 address. w6sm8782758pfj.17 - gsmtp
 ```
 
-**Sample Code [Email as HTML]**
+**Sample Code [Email as HTML]** [Click here]() To download complete code.
 
+++Step 1:++ Import required packages
+- [log](https://golang.org/pkg/log/) :: log.Print() to print important stages and errors
+- [fmt](https://golang.org/pkg/fmt/) :: fmt.Sprintf() To print formatted text
+- [net/smpt](https://golang.org/pkg/net/smtp/) :: smtp.PlainAuth() is to authenticate account and smtp.SendMail() is to send Email using SMTP Protocol
+- [mime/quotedprintable](https://golang.org/pkg/mime/quotedprintable/) :: quotedprintable.NewWriter() Is convert Email body in "Quoted Printable" Format. [Click here](https://en.wikipedia.org/wiki/Quoted-printable) To know more about the format.
 ``` Go
 package main
-
 import (
     "log"
-    "net/smtp"
-    "bytes"
     "fmt"
+    "bytes"
+    "net/smtp"
     "mime/quotedprintable"
 )
-
-func main() {
-    to_email     := "recipient-email@domain"
-    from_email   := "from-email@domain"
-    password     := "gmail-app-password"
-
-    header := make(map[string]string)
-    header["From"]     = from_email
-    header["To"]       = to_email
-    header["Subject"]  = "Write Your Subject Here"
-
-    header["MIME-Version"]        = "1.0"
-    header["Content-Type"]        = fmt.Sprintf("%s; charset=\"utf-8\"", "text/html")
-    header["Content-Disposition"] = "inline"
-    header["Content-Transfer-Encoding"] = "quoted-printable"
-
-    header_message := ""
-    for key, value := range header {
-        header_message += fmt.Sprintf("%s: %s\r\n", key, value)
-    }
-
-    body := "<h1>This is your HTML Body</h1>"
-    var body_message bytes.Buffer
-    temp := quotedprintable.NewWriter(&body_message)
-    temp.Write([]byte(body))
-    temp.Close()
-
-    final_message := header_message + "\r\n" + body_message.String()
-    host := "smtp.gmail.com:587"
-    auth := smtp.PlainAuth("", from_email, password, "smtp.gmail.com")
-    status  := smtp.SendMail(host, auth, from_email, []string{to_email}, []byte(final_message))
-    if status != nil {
-        log.Printf("Error from SMTP Server: %s", status)
-    }
-    log.Print("Email Sent Successfully")
+```
+++Step 2:++ Set required parameters to authenticating access to SMTP
+``` go
+from_email:= "from-email@domain"
+password  := "gmail-app-password"
+host      := "smtp.gmail.com:587"
+auth      := smtp.PlainAuth("", from_email, password, host)
+```
+++Step 3:++ Set required Email header parameters like From, To and Subject
+``` go
+header := make(map[string]string)
+to_email        := "recipient-email@domain"
+header["From"]   = from_email
+header["To"]     = to_email
+header["Subject"]= "Write Your Subject Here"
+```
+++Step 4:++ Set header parameters to define type of Email content.
+``` go
+header["MIME-Version"]              = "1.0"
+header["Content-Type"]              = fmt.Sprintf("%s; charset=\"utf-8\"", "text/html")
+header["Content-Disposition"]       = "inline"
+header["Content-Transfer-Encoding"] = "quoted-printable"
+```
+++Step 5:++ Prepare Formatted header string by looping all Header parameters.
+``` go
+header_message := ""
+for key, value := range header {
+    header_message += fmt.Sprintf("%s: %s\r\n", key, value)
 }
 ```
-
+++Step 6:++ Prepare Quoted-Printable Email body. 
+``` go
+body := "<h1>This is your HTML Body</h1>"
+var body_message bytes.Buffer
+temp := quotedprintable.NewWriter(&body_message)
+temp.Write([]byte(body))
+temp.Close()
+```
+++Step 7:++ Prepare final Email message by concatenating header and body.
+``` go
+final_message := header_message + "\r\n" + body_message.String()
+```
+++Step 8:++ Send Email and print log accordingly
+``` go
+status  := smtp.SendMail(host, auth, from_email, []string{to_email}, []byte(final_message))
+if status != nil {
+    log.Printf("Error from SMTP Server: %s", status)
+}
+log.Print("Email Sent Successfully")
+```
 **Sample Code [Email as Plain Text]**
 
 ``` go
@@ -133,4 +149,4 @@ func main() {
     log.Print("Email Sent Successfully")
 }
 ```
-You can also try package named [Gomail](https://github.com/go-gomail/gomail) for sending mail via Gmail.
+#### You can also try package named [Gomail](https://github.com/go-gomail/gomail) for sending mail via Gmail.
