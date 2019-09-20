@@ -38,13 +38,12 @@ Before sending Emails using Gmail SMTP Server, Change the required setting using
 
 ![Generate App Password](https://i.imgur.com/LHfCxdH.png)
 
-2. For security precaution, Google may require you to complete this additional step while signing-in. [Click Here](https://accounts.google.com/DisplayUnlockCaptcha) to Allow access to your Google account using new Device/App.
+4. For security precaution, Google may require you to complete this additional step while signing-in. [Click Here](https://accounts.google.com/DisplayUnlockCaptcha) to Allow access to your Google account using new Device/App.
 
 ![New Device-App](https://i.imgur.com/hymkYJ6.png)
 
 ==**Note**: It may take an hour or more to reflect this security changes==
 
- 
 Following are some of errors which you may get from Gmail SMTP Module
 
 **Error 1**. If you have entered wrong credentials
