@@ -47,13 +47,13 @@ attach  : A list of path-names of files to attach to the message. Attached files
  tasks:
     - name: Sending an e-mail using Gmail SMTP servers
       mail:
-	host: smtp.gmail.com
-	port: 587
-	username: username@gmail.com
-	password: your-password
-	to: recipient-name <recipient-email@domain>
-	subject: Ansible Report
-	body: System {{ ansible_hostname }} has been successfully provisioned.
+      host: smtp.gmail.com
+        port: 587
+        username: username@gmail.com
+        password: your-password
+        to: recipient-name <recipient-email@domain>
+        subject: Ansible Report
+        body: System {{ ansible_hostname }} has been successfully provisioned.
       delegate_to: localhost
 ```
 
