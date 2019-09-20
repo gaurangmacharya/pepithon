@@ -64,7 +64,7 @@ Following are some of errors which you may get from Gmail SMTP Module
 
 **Sample Code [Email as HTML]** [Click here](https://github.com/gaurangmacharya/pepithon/blob/master/send-email-via-gmail-smtp-server-using-go.go) To download complete code.
 
-Step 1: Import required packages
+**Step 1:** Import required packages
 - [log](https://golang.org/pkg/log/) :: log.Print() to print important stages and errors
 - [fmt](https://golang.org/pkg/fmt/) :: fmt.Sprintf() To print formatted text
 - [net/smpt](https://golang.org/pkg/net/smtp/) :: smtp.PlainAuth() is to authenticate account and smtp.SendMail() is to send Email using SMTP Protocol
@@ -79,14 +79,14 @@ import (
     "mime/quotedprintable"
 )
 ```
-Step 2: Set required parameters to authenticating access to SMTP
+**Step 2:** Set required parameters to authenticating access to SMTP
 ``` go
 from_email:= "from-email@domain"
 password  := "gmail-app-password"
 host      := "smtp.gmail.com:587"
 auth      := smtp.PlainAuth("", from_email, password, "smtp.gmail.com")
 ```
-Step 3: Set required Email header parameters like From, To and Subject
+**Step 3:** Set required Email header parameters like From, To and Subject
 ``` go
 header := make(map[string]string)
 to_email        := "recipient-email@domain"
@@ -94,21 +94,21 @@ header["From"]   = from_email
 header["To"]     = to_email
 header["Subject"]= "Write Your Subject Here"
 ```
-Step 4: Set header parameters to define type of Email content.
+**Step 4:** Set header parameters to define type of Email content.
 ``` go
 header["MIME-Version"]              = "1.0"
 header["Content-Type"]              = fmt.Sprintf("%s; charset=\"utf-8\"", "text/html")
 header["Content-Disposition"]       = "inline"
 header["Content-Transfer-Encoding"] = "quoted-printable"
 ```
-Step 5: Prepare Formatted header string by looping all Header parameters.
+**Step 5:** Prepare Formatted header string by looping all Header parameters.
 ``` go
 header_message := ""
 for key, value := range header {
     header_message += fmt.Sprintf("%s: %s\r\n", key, value)
 }
 ```
-Step 6: Prepare Quoted-Printable Email body. 
+**Step 6:** Prepare Quoted-Printable Email body. 
 ``` go
 body := "<h1>This is your HTML Body</h1>"
 var body_message bytes.Buffer
@@ -116,11 +116,11 @@ temp := quotedprintable.NewWriter(&body_message)
 temp.Write([]byte(body))
 temp.Close()
 ```
-Step 7: Prepare final Email message by concatenating header and body.
+**Step 7:** Prepare final Email message by concatenating header and body.
 ``` go
 final_message := header_message + "\r\n" + body_message.String()
 ```
-Step 8: Send Email and print log accordingly
+**Step 8:** Send Email and print log accordingly
 ``` go
 status  := smtp.SendMail(host, auth, from_email, []string{to_email}, []byte(final_message))
 if status != nil {
