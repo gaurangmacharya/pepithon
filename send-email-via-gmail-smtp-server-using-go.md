@@ -63,7 +63,7 @@ Following are some of errors which you may get from Gmail SMTP Module
 5.1.2 address. w6sm8782758pfj.17 - gsmtp
 ```
 
-**Sample Code [Email as HTML]** [Click here]() To download complete code.
+**Sample Code [Email as HTML]** [Click here](https://github.com/gaurangmacharya/pepithon/blob/master/send-email-via-gmail-smtp-server-using-go.go) To download complete code.
 
 ++Step 1:++ Import required packages
 - [log](https://golang.org/pkg/log/) :: log.Print() to print important stages and errors
@@ -85,7 +85,7 @@ import (
 from_email:= "from-email@domain"
 password  := "gmail-app-password"
 host      := "smtp.gmail.com:587"
-auth      := smtp.PlainAuth("", from_email, password, host)
+auth      := smtp.PlainAuth("", from_email, password, "smtp.gmail.com")
 ```
 ++Step 3:++ Set required Email header parameters like From, To and Subject
 ``` go
@@ -149,4 +149,5 @@ func main() {
     log.Print("Email Sent Successfully")
 }
 ```
+
 #### You can also try package named [Gomail](https://github.com/go-gomail/gomail) for sending mail via Gmail.
