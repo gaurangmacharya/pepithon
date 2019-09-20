@@ -8,13 +8,13 @@ import (
 )
 
 func main() {
-    from_email := "acharya.gm@gmail.com"
-    password   := "wzsmcipggbsqnjxl"
+    from_email := "from-email@domain"
+    password   := "gmail-app-password"
     host       := "smtp.gmail.com:587"
     auth       := smtp.PlainAuth("", from_email, password, "smtp.gmail.com")
 
     header := make(map[string]string)
-    to_email           := "acharya_gaurang@yahoo.com"
+    to_email           := "recipient-email@domain"
     header["From"]     = from_email
     header["To"]       = to_email
     header["Subject"]  = "Write Your Subject Here"
