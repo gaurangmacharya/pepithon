@@ -50,32 +50,11 @@ Screen: Google Account Security Settings 2-Step-Verification is Enabled
 
 <br>
 
-**4. ERRORS**
-
-Following are some of errors which you may encounter while testing Gmail SMTP Module
-
-**4.1:**. If you have entered wrong credentials
-```
-2019/09/18 12:21:51 Error from SMTP Server: 535 5.7.8 Username and Password not accepted. Learn more at
-5.7.8  https://support.google.com/mail/?p=BadCredentials c8sm5954072pfi.117 - gsmtp
-```
-**4.2:**. If you have not enabled App Password
-```
-2019/09/18 11:46:49 Error from SMTP Server: 534 5.7.9 Application-specific password required. Learn more at
-5.7.9  https://support.google.com/mail/?p=InvalidSecondFactor s141sm5130851pfs.13 - gsmtp
-```
-**4.3:**. If you have entered wrong Email Address
-```
-2019/09/18 13:16:06 Error from SMTP Server: 553 5.1.2 The recipient address <recipient-email> is not a valid RFC-5321
-5.1.2 address. w6sm8782758pfj.17 - gsmtp
-```
-<br>
-
-**5. CODE - EMAIL AS HTML**
+**4. CODE - EMAIL AS HTML**
 
 [Click here](https://github.com/gaurangmacharya/pepithon/blob/master/send-email-via-gmail-smtp-server-using-go.go) To download complete code for sending Email as HTML
 
-**5.1:** Import required packages
+**4.1:** Import required packages
 - [log](https://golang.org/pkg/log/) :: log.Print() to print important stages and errors
 - [fmt](https://golang.org/pkg/fmt/) :: fmt.Sprintf() To print formatted text
 - [net/smpt](https://golang.org/pkg/net/smtp/) :: smtp.PlainAuth() is to authenticate account and smtp.SendMail() is to send Email using SMTP Protocol
@@ -90,14 +69,14 @@ import (
     "mime/quotedprintable"
 )
 ```
-**5.2:** Set required parameters to authenticating access to SMTP
+**4.2:** Set required parameters to authenticating access to SMTP
 ``` go
 from_email:= "from-email@domain"
 password  := "gmail-app-password"
 host      := "smtp.gmail.com:587"
 auth      := smtp.PlainAuth("", from_email, password, "smtp.gmail.com")
 ```
-**5.3:** Set required Email header parameters like From, To and Subject
+**4.3:** Set required Email header parameters like From, To and Subject
 ``` go
 header := make(map[string]string)
 to_email        := "recipient-email@domain"
@@ -105,21 +84,21 @@ header["From"]   = from_email
 header["To"]     = to_email
 header["Subject"]= "Write Your Subject Here"
 ```
-**5.4:** Set header parameters to define type of Email content.
+**4.4:** Set header parameters to define type of Email content.
 ``` go
 header["MIME-Version"]              = "1.0"
 header["Content-Type"]              = fmt.Sprintf("%s; charset=\"utf-8\"", "text/html")
 header["Content-Disposition"]       = "inline"
 header["Content-Transfer-Encoding"] = "quoted-printable"
 ```
-**5.5:** Prepare Formatted header string by looping all Header parameters.
+**4.5:** Prepare Formatted header string by looping all Header parameters.
 ``` go
 header_message := ""
 for key, value := range header {
     header_message += fmt.Sprintf("%s: %s\r\n", key, value)
 }
 ```
-**5.6:** Prepare Quoted-Printable Email body. 
+**4.6:** Prepare Quoted-Printable Email body. 
 ``` go
 body := "<h1>This is your HTML Body</h1>"
 var body_message bytes.Buffer
@@ -127,11 +106,11 @@ temp := quotedprintable.NewWriter(&body_message)
 temp.Write([]byte(body))
 temp.Close()
 ```
-**5.7:** Prepare final Email message by concatenating header and body.
+**4.7:** Prepare final Email message by concatenating header and body.
 ``` go
 final_message := header_message + "\r\n" + body_message.String()
 ```
-**5.8:** Send Email and print log accordingly
+**4.8:** Send Email and print log accordingly
 ``` go
 status  := smtp.SendMail(host, auth, from_email, []string{to_email}, []byte(final_message))
 if status != nil {
@@ -141,7 +120,7 @@ log.Print("Email Sent Successfully")
 ```
 <br>
 
-**6. CODE EMAIL AS TEXT**
+**5. CODE EMAIL AS TEXT**
 ``` go
 package main
 import (
@@ -160,5 +139,26 @@ func main() {
     log.Print("Email Sent Successfully")
 }
 ```
+
+**6. ERRORS**
+
+Following are some of errors which you may encounter while testing Gmail SMTP Module
+
+**6.1:**. If you have entered wrong credentials
+```
+2019/09/18 12:21:51 Error from SMTP Server: 535 5.7.8 Username and Password not accepted. Learn more at
+5.7.8  https://support.google.com/mail/?p=BadCredentials c8sm5954072pfi.117 - gsmtp
+```
+**6.2:**. If you have not enabled App Password
+```
+2019/09/18 11:46:49 Error from SMTP Server: 534 5.7.9 Application-specific password required. Learn more at
+5.7.9  https://support.google.com/mail/?p=InvalidSecondFactor s141sm5130851pfs.13 - gsmtp
+```
+**6.3:**. If you have entered wrong Email Address
+```
+2019/09/18 13:16:06 Error from SMTP Server: 553 5.1.2 The recipient address <recipient-email> is not a valid RFC-5321
+5.1.2 address. w6sm8782758pfj.17 - gsmtp
+```
+<br>
 
 #### You can also try package named [Gomail](https://github.com/go-gomail/gomail) for sending mail via Gmail.
