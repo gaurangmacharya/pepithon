@@ -44,10 +44,10 @@ attach  : A list of path-names of files to attach to the message. Attached files
 ``` yml
 - hosts:
     - localhost
-- tasks:
+  tasks:
     - name: Sending an e-mail using Gmail SMTP servers
       mail:
-      host: smtp.gmail.com
+        host: smtp.gmail.com
         port: 587
         username: username@gmail.com
         password: your-password
@@ -61,7 +61,7 @@ attach  : A list of path-names of files to attach to the message. Attached files
 ``` yml
 - hosts:
     - localhost
-- tasks:
+  tasks:
     - name: Send Emails to a bunch of users, with Playbook Report as an attachment.
       mail:
         host: localhost
@@ -102,6 +102,11 @@ array (
 See stdout/stderr for the exact error',
   'rc' => 1,
 )
+```
+
+**Error 2:** When Gmail account credentials were incorrect 
+```
+fatal: [localhost -> localhost]: FAILED! => {"changed": false, "msg": "Authentication to smtp.gmail.com:587 failed, please check your username and/or password", "rc": 1}
 ```
 
 **Few other notification modules in Ansible**
