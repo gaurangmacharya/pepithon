@@ -86,6 +86,7 @@ attach  : A list of path-names of files to attach to the message. Attached files
 **Error 1:** When mailing service was not running on Port 25 and connecion was refused by server
 ```
 An exception occurred during task execution. To see the full traceback, use -vvv. The error was: socket.error: [Errno 111] Connection refused
+fatal: [localhost -> localhost]: FAILED! => 
 array (
   'changed' => false,
   'module_stderr' => 'Traceback (most recent call last):
@@ -106,7 +107,22 @@ See stdout/stderr for the exact error',
 
 **Error 2:** When Gmail account credentials were incorrect 
 ```
-fatal: [localhost -> localhost]: FAILED! => {"changed": false, "msg": "Authentication to smtp.gmail.com:587 failed, please check your username and/or password", "rc": 1}
+An exception occurred during task execution. To see the full traceback, use -vvv. The error was: IOError: [Errno 2] No such file or directory: '/tmp/ansible.logs'
+fatal: [localhost -> localhost]: FAILED! => 
+array (
+  'changed' => false,
+  'msg' => 'Failed to send mail: can\'t attach file /tmp/ansible.logs: [Errno 2] No such file or directory: \'/tmp/ansible.logs\'',
+  'rc' => 1,
+)
+```
+
+**Error 3:** When attachment file was missing at defined location
+```
+array (
+  'changed' => false,
+  'msg' => 'Failed to send mail: can\'t attach file /tmp/ansible.logs: [Errno 2] No such file or directory: \'/tmp/ansible.logs\'',
+  'rc' => 1,
+)
 ```
 
 **Few other notification modules in Ansible**
