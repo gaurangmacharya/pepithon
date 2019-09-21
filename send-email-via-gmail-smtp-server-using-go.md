@@ -17,6 +17,7 @@ func SendMail(addr string, a Auth, from string, to []string, msg []byte) error
   - This function and the net/smtp package are low-level mechanisms and do not provide support for DKIM signing, MIME attachments and  other features.
 
 <br>
+
 **Google Account Security Settings**
 
 Before sending Emails using Gmail SMTP Server, Change the required setting using Google Account Security Settings or [Click Here](https://myaccount.google.com/security)
@@ -46,6 +47,7 @@ Screen: Google Account Security Settings 2-Step-Verification is Enabled
 ==**Note**: It may take an hour or more to reflect this security changes==
 
 <br>
+
 **Errors**
 Following are some of errors which you may encounter while testing Gmail SMTP Module
 
@@ -65,6 +67,7 @@ Following are some of errors which you may encounter while testing Gmail SMTP Mo
 5.1.2 address. w6sm8782758pfj.17 - gsmtp
 ```
 <br>
+
 **Sample Code [Email as HTML]** [Click here](https://github.com/gaurangmacharya/pepithon/blob/master/send-email-via-gmail-smtp-server-using-go.go) To download complete code.
 
 **Step 1:** Import required packages
@@ -132,6 +135,7 @@ if status != nil {
 log.Print("Email Sent Successfully")
 ```
 <br>
+
 **Sample Code [Email as Plain Text]**
 ``` go
 package main
