@@ -107,17 +107,13 @@ See stdout/stderr for the exact error',
 
 **Error 2:** When Gmail account credentials were incorrect 
 ```
-An exception occurred during task execution. To see the full traceback, use -vvv. The error was: IOError: [Errno 2] No such file or directory: '/tmp/ansible.logs'
-fatal: [localhost -> localhost]: FAILED! => 
-array (
-  'changed' => false,
-  'msg' => 'Failed to send mail: can\'t attach file /tmp/ansible.logs: [Errno 2] No such file or directory: \'/tmp/ansible.logs\'',
-  'rc' => 1,
-)
+fatal: [localhost -> localhost]: FAILED! => {"changed": false, "msg": "Authentication to smtp.gmail.com:587 failed, please check your username and/or password", "rc": 1}
 ```
 
 **Error 3:** When file to be attached was either missing at defined location or was inaccessible.
 ```
+An exception occurred during task execution. To see the full traceback, use -vvv. The error was: IOError: [Errno 2] No such file or directory: '/tmp/ansible.logs'
+fatal: [localhost -> localhost]: FAILED! => 
 array (
   'changed' => false,
   'msg' => 'Failed to send mail: can\'t attach file /tmp/ansible.logs: [Errno 2] No such file or directory: \'/tmp/ansible.logs\'',
