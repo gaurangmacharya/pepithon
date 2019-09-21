@@ -139,6 +139,7 @@ func main() {
     log.Print("Email Sent Successfully")
 }
 ```
+<br>
 
 **6. ERRORS**
 
@@ -159,6 +160,5 @@ Following are some of errors which you may encounter while testing Gmail SMTP Mo
 2019/09/18 13:16:06 Error from SMTP Server: 553 5.1.2 The recipient address <recipient-email> is not a valid RFC-5321
 5.1.2 address. w6sm8782758pfj.17 - gsmtp
 ```
-<br>
 
 #### You can also try package named [Gomail](https://github.com/go-gomail/gomail) for sending mail via Gmail.
