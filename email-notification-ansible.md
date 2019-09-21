@@ -83,7 +83,7 @@ attach  : A list of path-names of files to attach to the message. Attached files
 ```
 ==**Note:** Please check Host-Port Connection using Ping, Telnet command or else you may get an error saying socket.error: [Errno 111] Connection refused==
 
-**Error 1:** When mailing service was not running on Port 25 and connecion was refused by server
+**Error 1:** When mailing service was not running on Port 25 OR connecion was refused by server
 ```
 An exception occurred during task execution. To see the full traceback, use -vvv. The error was: socket.error: [Errno 111] Connection refused
 fatal: [localhost -> localhost]: FAILED! => 
@@ -116,7 +116,7 @@ array (
 )
 ```
 
-**Error 3:** When attachment file was missing at defined location
+**Error 3:** When file to be attached was either missing at defined location or was inaccessible.
 ```
 array (
   'changed' => false,
@@ -125,6 +125,16 @@ array (
 )
 ```
 
+**Error 4:** When recipient email address was incorrect.
+```
+An exception occurred during task execution. To see the full traceback, use -vvv. The error was: SMTPRecipientsRefused: {'to-email-1': (550, '5.1.1 <to-email-1>: Recipient address rejected: User unknown in local recipient table')}
+fatal: [localhost -> localhost]: FAILED! => 
+array (
+  'changed' => false,
+  'msg' => 'Failed to send mail to \'to-email-1\': {\'to-email-1\': (550, \'5.1.1 : Recipient address rejected: User unknown in local recipient table\')}',
+  'rc' => 1,
+)
+```
 **Few other notification modules in Ansible**
 + hipchat – Send a message to Hipchat
 + jabber – Send a message to jabber user or chat room
