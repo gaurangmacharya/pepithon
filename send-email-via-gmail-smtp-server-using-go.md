@@ -1,11 +1,10 @@
 # How to send an E-mail via GMail SMTP Server using GO
 
 SMTP/NET Package implements the Simple Mail Transfer Protocol as defined in RFC 5321.
-
 ```
 func SendMail(addr string, a Auth, from string, to []string, msg []byte) error
 ```
-Following is explanation about parameters needs to be passed.
+**Parameters**
 + **addr**  is a Host Server Address along with Port Number separated by Column ':'
 + **a** is a Authentication response from Gmail
 + **from** is an Email Address using which we are authenticating and sending Email
@@ -16,21 +15,22 @@ Following is explanation about parameters needs to be passed.
   - The headers part includes fields such as "From", "To", "Subject", and "Cc".
   - Sending "Bcc" messages is accomplished by including an email address in the to parameter but not including it in the msg headers. 
   - This function and the net/smtp package are low-level mechanisms and do not provide support for DKIM signing, MIME attachments and  other features.
-
+<br><hr>
 **Google Account Security Settings**
 
 Before sending Emails using Gmail SMTP Server, Change the required setting using Google Account Security Settings or [Click Here](https://myaccount.google.com/security)
 
-**Step 1:** Make sure that **2-Step-Verification** is Enabled
+**Step 1:** Make sure that 2-Step-Verification is Enabled
 
-++Screen: Google Account Security Settings 2-Step-Verification is Disabled++
+Screen: Google Account Security Settings 2-Step-Verification is Disabled
+
 ![Google Account Security Settings 2-Step-Verification is Disabled](https://i.imgur.com/6Hxmb2G.png)
 
-++Screen: Google Account Security Settings 2-Step-Verification is Enabled++
+Screen: Google Account Security Settings 2-Step-Verification is Enabled
+
 ![Google Account Security Settings 2-Step-Verification Enabled](https://i.imgur.com/vcQYoGo.png)
 
-
-**Step 2:** Turn ON/OFF to toggle the **Less Secure App Access** or [Click Here](https://myaccount.google.com/u/0/lesssecureapps)
+**Step 2:** Turn ON/OFF to toggle the Less Secure App Access or [Click Here](https://myaccount.google.com/u/0/lesssecureapps)
 
 ![Less Secure App Access](https://i.imgur.com/mEGa22F.png)
 
@@ -43,8 +43,9 @@ Before sending Emails using Gmail SMTP Server, Change the required setting using
 ![New Device-App](https://i.imgur.com/hymkYJ6.png)
 
 ==**Note**: It may take an hour or more to reflect this security changes==
-
-Following are some of errors which you may get from Gmail SMTP Module
+<br><hr>
+**Errors**
+Following are some of errors which you may encounter while testing Gmail SMTP Module
 
 **Error 1**. If you have entered wrong credentials
 ```
@@ -61,7 +62,7 @@ Following are some of errors which you may get from Gmail SMTP Module
 2019/09/18 13:16:06 Error from SMTP Server: 553 5.1.2 The recipient address <recipient-email> is not a valid RFC-5321
 5.1.2 address. w6sm8782758pfj.17 - gsmtp
 ```
-
+<br><hr>
 **Sample Code [Email as HTML]** [Click here](https://github.com/gaurangmacharya/pepithon/blob/master/send-email-via-gmail-smtp-server-using-go.go) To download complete code.
 
 **Step 1:** Import required packages
@@ -128,7 +129,7 @@ if status != nil {
 }
 log.Print("Email Sent Successfully")
 ```
-
+<br><hr>
 **Sample Code [Email as Plain Text]**
 ``` go
 package main
