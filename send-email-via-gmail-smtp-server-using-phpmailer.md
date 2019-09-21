@@ -1,9 +1,8 @@
 # How to send an E-mail via GMail SMTP Server using PHP
 
 **1. INTRODUCTION**
-Using GMail SMTP Server you can send E-mails to any domain using your Gmail Credentials.
 
-**Sending Limit Criteria**
+Using GMail SMTP Server you can send E-mails to any domain using your Gmail Credentials. Following are some Emails sending limit criterias.
 + Google limits the number of recipients in a single Email and number of Emails can be sent per day.
 + Current limit is 500 Emails in a day or 500 recipients in a single Email.
 + On reaching threshold limits, You can not send messages for 1 to 24 hours.
