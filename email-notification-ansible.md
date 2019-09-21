@@ -10,7 +10,12 @@ and for installing Ansible on RHEL/CentOS run:
 $ sudo yum install ansible
 ```
 
-After completion of any Automated Task i.e. Playbook It is very important to record and send detailed report to stake holders so that they act and play their role. For this Ansible can send Emails with attachment via
+After completion of any Automated Task i.e. Playbook It is very important to record and send detailed report to stake holders so that they act and play their role.
+- After an installation an application.
+- After any activity in GIT.
+- When a certain job has been completed.
+
+Ansible can send Emails with attachment via
 - Local Configured Email Server say Postfix
 - Remote Email Server with required access and credentials
 - Sending a mail using SMTP Services like Pepipost, Gmail, Mandrill, Mailjet, SendGrid etc
@@ -20,23 +25,43 @@ After completion of any Automated Task i.e. Playbook It is very important to rec
 
 **2. PARAMETERS**
 
+**2.1 Connection**
 ```
 host    : The mail server. Default is localhost.
 port    : The mail server port. Mostly 25, 465, 587
 username: If SMTP requires username.
 password: If SMTP requires password.
 timeout : Sets the timeout in seconds for connection attempts.
-headers : A list of headers which should be added to the message.
+```
 
+**2.2 Security**
+```
+secure: 
+- If always, the connection will send email only if it is Encrypted. It will fail, If the server doesn't accept the encrypted connection.
+- If try, before trying to send Email, connection will attempt to setup a secure SSL/TLS session.
+- If never, before sending an Email, connection will not attempt to setup a secure SSL/TLS session. 
+- If starttls, before sending Email, connection will try to upgrade to a secure SSL/TLS connection. Connection will fail in case if unable to do so.
+```
+
+**2.3 Headers**
+```
+headers : A list of headers which should be added to the message.
 from    : The email-address the mail is sent from. Default is root.
 to      : The email-address(es) the mail is being sent to.
 cc      : The email-address(es) the mail is being copied to
 bcc     : The list of email-address(es) the mail is being 'blind' copied to.
+```
 
-body    : The body of the email being sent.
-charset : The character set of email being sent. Default is UTF-8
+**2.4 Subject**
+```
 subject : The subject of the email being sent. This is a mandatory field.
 subtype : The minor mime type, can be either plain or html. The major type is always text.
+```
+
+**2.5 Email Body**
+```
+charset : The character set of email being sent. Default is UTF-8
+body    : The body of the email being sent.
 attach  : A list of path-names of files to attach to the message. Attached files will have their content-type set to application/octet-stream
 ```
 <br>
