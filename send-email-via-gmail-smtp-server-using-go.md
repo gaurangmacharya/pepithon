@@ -1,6 +1,7 @@
 # How to send an E-mail via GMail SMTP Server using GO
 
 **1. Introduction**
+
 SMTP/NET Package implements the Simple Mail Transfer Protocol as defined in RFC 5321.
 ```
 func SendMail(addr string, a Auth, from string, to []string, msg []byte) error
@@ -50,19 +51,20 @@ Screen: Google Account Security Settings 2-Step-Verification is Enabled
 <br>
 
 **4. Errors**
+
 Following are some of errors which you may encounter while testing Gmail SMTP Module
 
-**4.1**. If you have entered wrong credentials
+**4.1:**. If you have entered wrong credentials
 ```
 2019/09/18 12:21:51 Error from SMTP Server: 535 5.7.8 Username and Password not accepted. Learn more at
 5.7.8  https://support.google.com/mail/?p=BadCredentials c8sm5954072pfi.117 - gsmtp
 ```
-**4.2**. If you have not enabled App Password
+**4.2:**. If you have not enabled App Password
 ```
 2019/09/18 11:46:49 Error from SMTP Server: 534 5.7.9 Application-specific password required. Learn more at
 5.7.9  https://support.google.com/mail/?p=InvalidSecondFactor s141sm5130851pfs.13 - gsmtp
 ```
-**4.3**. If you have entered wrong Email Address
+**4.3:**. If you have entered wrong Email Address
 ```
 2019/09/18 13:16:06 Error from SMTP Server: 553 5.1.2 The recipient address <recipient-email> is not a valid RFC-5321
 5.1.2 address. w6sm8782758pfj.17 - gsmtp
@@ -70,6 +72,7 @@ Following are some of errors which you may encounter while testing Gmail SMTP Mo
 <br>
 
 **5. Sample Code [Email as HTML]**
+
 [Click here](https://github.com/gaurangmacharya/pepithon/blob/master/send-email-via-gmail-smtp-server-using-go.go) To download complete code.
 
 **5.1:** Import required packages
