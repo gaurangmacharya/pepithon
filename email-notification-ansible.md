@@ -1,6 +1,6 @@
 # How to send an Email Notification using Ansible?
 
-**Synopsis**
+**1. INTRODUCTION**
 
 Ansible is a radically simple IT automation engine that automates cloud provisioning, configuration management, application deployment, intra-service orchestration, and many other IT needs. Ansible comes with 20+ Built in modules with more than 3000+ functionality.  
 
@@ -16,7 +16,9 @@ After completion of any Automated Task i.e. Playbook It is very important to rec
 - Sending a mail using SMTP Services like Pepipost, Gmail, Mandrill, Mailjet, SendGrid etc
 [Click here](https://docs.ansible.com/ansible/latest/modules/mail_module.html) to know more about Email module in Ansible.
 
-**Important Parameters:**
+<br>
+
+**2. PARAMETERS**
 
 ```
 host    : The mail server. Default is localhost.
@@ -37,9 +39,9 @@ subject : The subject of the email being sent. This is a mandatory field.
 subtype : The minor mime type, can be either plain or html. The major type is always text.
 attach  : A list of path-names of files to attach to the message. Attached files will have their content-type set to application/octet-stream
 ```
+<br>
 
-
-**Example-1: With minimum parameters without attachement**
+**3. CODE - EMAIL WITHOUT ATTACHMENT USING GMAIL SMTP SERVER**
 
 ``` yml
 - hosts:
@@ -56,8 +58,9 @@ attach  : A list of path-names of files to attach to the message. Attached files
         body: System {{ ansible_hostname }} has been successfully provisioned.
       delegate_to: localhost
 ```
+<br>
 
-**Example-2: Sending Report as attachment using In-House SMTP Server**
+**4. CODE WITH ATTACHMENT USING IN-HOUSE EMAIL SERVER**
 ``` yml
 - hosts:
     - localhost
@@ -83,9 +86,11 @@ attach  : A list of path-names of files to attach to the message. Attached files
 ```
 ==**Note:** Please check Host-Port Connection using Ping, Telnet command or else you may get an error saying socket.error: [Errno 111] Connection refused==
 
-Some of the errors I encountered while executing the code are as follows
+<br>
 
-**Error 1:** When mailing service was not running on Port 25 OR connecion was refused by server
+**5. ERRORS**
+
+**5.1:** When mailing service was not running on Port 25 OR connecion was refused by server
 ```
 An exception occurred during task execution. To see the full traceback, use -vvv. The error was: socket.error: [Errno 111] Connection refused
 fatal: [localhost -> localhost]: FAILED! => 
@@ -107,12 +112,12 @@ See stdout/stderr for the exact error',
 )
 ```
 
-**Error 2:** When Gmail account credentials were incorrect 
+**5.2:** When Gmail account credentials were incorrect 
 ```
 fatal: [localhost -> localhost]: FAILED! => {"changed": false, "msg": "Authentication to smtp.gmail.com:587 failed, please check your username and/or password", "rc": 1}
 ```
 
-**Error 3:** When file to be attached was either missing at defined location or was inaccessible.
+**5.3:** When file to be attached was either missing at defined location or was inaccessible.
 ```
 An exception occurred during task execution. To see the full traceback, use -vvv. The error was: IOError: [Errno 2] No such file or directory: '/tmp/ansible.logs'
 fatal: [localhost -> localhost]: FAILED! => 
@@ -123,7 +128,7 @@ array (
 )
 ```
 
-**Error 4:** When recipient email address was incorrect.
+**5.4:** When recipient email address was incorrect.
 ```
 An exception occurred during task execution. To see the full traceback, use -vvv. The error was: SMTPRecipientsRefused: {'to-email-1': (550, '5.1.1 <to-email-1>: Recipient address rejected: User unknown in local recipient table')}
 fatal: [localhost -> localhost]: FAILED! => 
@@ -134,12 +139,13 @@ array (
 )
 ```
 
-**Error 5:** When any mandatory parameters is missing like here "Subject" was missing
+**5.5:** When any mandatory parameters is missing like here "Subject" was missing
 ```
 fatal: [localhost -> localhost]: FAILED! => {"changed": false, "msg": "missing required arguments: subject"}
 ```
+<br>
 
-**Few other notification modules in Ansible**
+**6. OTHER NOTIFICATION SENDING MODULES IN ANSIBLE**
 + hipchat – Send a message to Hipchat
 + jabber – Send a message to jabber user or chat room
 + rabbitmq_publish – Publish a message to a RabbitMQ queue
