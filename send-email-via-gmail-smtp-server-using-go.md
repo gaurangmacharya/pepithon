@@ -1,12 +1,12 @@
 # How to send an E-mail via GMail SMTP Server using GO
 
-**1. Introduction**
+**1. INTRODUCTION**
 
 SMTP/NET Package implements the Simple Mail Transfer Protocol as defined in RFC 5321.
 ```
 func SendMail(addr string, a Auth, from string, to []string, msg []byte) error
 ```
-**2. Parameters**
+**2. PARAMETERS**
 + **addr**  is a Host Server Address along with Port Number separated by Column ':'
 + **a** is a Authentication response from Gmail
 + **from** is an Email Address using which we are authenticating and sending Email
@@ -20,7 +20,7 @@ func SendMail(addr string, a Auth, from string, to []string, msg []byte) error
 
 <br>
 
-**3. Google Account Security Settings**
+**3. SETTINGS**
 
 Before sending Emails using Gmail SMTP Server, Change the required setting using Google Account Security Settings or [Click Here](https://myaccount.google.com/security)
 
@@ -50,7 +50,7 @@ Screen: Google Account Security Settings 2-Step-Verification is Enabled
 
 <br>
 
-**4. Errors**
+**4. ERRORS**
 
 Following are some of errors which you may encounter while testing Gmail SMTP Module
 
@@ -71,9 +71,9 @@ Following are some of errors which you may encounter while testing Gmail SMTP Mo
 ```
 <br>
 
-**5. Sample Code [Email as HTML]**
+**5. CODE - EMAIL AS HTML**
 
-[Click here](https://github.com/gaurangmacharya/pepithon/blob/master/send-email-via-gmail-smtp-server-using-go.go) To download complete code.
+[Click here](https://github.com/gaurangmacharya/pepithon/blob/master/send-email-via-gmail-smtp-server-using-go.go) To download complete code for sending Email as HTML
 
 **5.1:** Import required packages
 - [log](https://golang.org/pkg/log/) :: log.Print() to print important stages and errors
@@ -141,7 +141,7 @@ log.Print("Email Sent Successfully")
 ```
 <br>
 
-**6. Sample Code [Email as Plain Text]**
+**6. CODE EMAIL AS TEXT**
 ``` go
 package main
 import (
