@@ -103,7 +103,7 @@ if(!$mail->Send()) {
 ```
 [Click here](https://github.com/gaurangmacharya/pepithon/blob/master/send-email-via-gmail-smtp-server-using-phpmailer.php) to download the complete code.
 
-**5. Other similar options**
+**5. Alternate solutions**
 + **G Suite SMTP Relay Service:** Send mail from your organization by authenticating with the IP addresses. You can send messages to anyone inside or outside of your domain.
 + **Restricted Gmail SMTP Server:** Send messages to Gmail or G Suite users only. This option does not require you to authenticate.
 + [Click here](https://support.google.com/a/answer/176600) to see detailed comparison of all 3 services.
