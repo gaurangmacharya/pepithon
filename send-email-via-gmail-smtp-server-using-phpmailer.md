@@ -1,6 +1,6 @@
 # How to send an E-mail via GMail SMTP Server using PHP
 
-**1. Introduction**
+**1. INTRODUCTION**
 Using GMail SMTP Server you can send E-mails to any domain using your Gmail Credentials.
 
 **Sending Limit Criteria**
@@ -12,7 +12,7 @@ Using GMail SMTP Server you can send E-mails to any domain using your Gmail Cred
   - Link 1: [Email sending limits](https://support.google.com/a/answer/166852)
   - Link 2: [Error messages once limit is crossed](https://support.google.com/mail/answer/22839)
 
-**2. Google Account Security Settings**
+**2. SETTINGS**
 
 **2.1:** Before sending Emails using Gmail SMTP Server, Change the required setting using Google Account Security Settings or [Click Here](https://myaccount.google.com/security)
 
@@ -48,11 +48,12 @@ composer require phpmailer/phpmailer
 ```
 [Composer](https://getcomposer.org/) is the recommended way to install PHPMailer.
 
-**4. PHP Code**
+**4. PHP CODE**
 + Using your Gmail Credentials, Connect to Host smtp.gmail.com
   - On port 465, if you’re using SSL
   - On port 587, if you’re using TLS
 + [Click here](https://github.com/PHPMailer/PHPMailer/wiki/Tutorial) for some more Examples and Tutorials of PHPMailer
+
 
 **4.1:** Include packages and files for PHP Mailers and SMTP Protocol
 ``` php
@@ -103,7 +104,7 @@ if(!$mail->Send()) {
 ```
 [Click here](https://github.com/gaurangmacharya/pepithon/blob/master/send-email-via-gmail-smtp-server-using-phpmailer.php) to download the complete code.
 
-**5. Alternate solutions**
+**5. ALTERNATE SOLUTIONS**
 + **G Suite SMTP Relay Service:** Send mail from your organization by authenticating with the IP addresses. You can send messages to anyone inside or outside of your domain.
 + **Restricted Gmail SMTP Server:** Send messages to Gmail or G Suite users only. This option does not require you to authenticate.
 + [Click here](https://support.google.com/a/answer/176600) to see detailed comparison of all 3 services.
