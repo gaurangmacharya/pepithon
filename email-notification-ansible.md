@@ -44,7 +44,7 @@ attach  : A list of path-names of files to attach to the message. Attached files
 ``` yml
 - hosts:
     - localhost
- tasks:
+- tasks:
     - name: Sending an e-mail using Gmail SMTP servers
       mail:
       host: smtp.gmail.com
@@ -82,6 +82,27 @@ attach  : A list of path-names of files to attach to the message. Attached files
       delegate_to: localhost
 ```
 ==**Note:** Please check Host-Port Connection using Ping, Telnet command or else you may get an error saying socket.error: [Errno 111] Connection refused==
+
+**Error 1:** When mailing service was not running on Port 25 and connecion was refused by server
+```
+An exception occurred during task execution. To see the full traceback, use -vvv. The error was: socket.error: [Errno 111] Connection refused
+array (
+  'changed' => false,
+  'module_stderr' => 'Traceback (most recent call last):
+  File ".ansible/tmp/ansible-tmp-1569048408.38-18927787866074/AnsiballZ_mail.py", line 114, in _ansiballz_main()
+  File ".ansible/tmp/ansible-tmp-1569048408.38-18927787866074/AnsiballZ_mail.py", line 106, in _ansiballz_main invoke_module(zipped_mod, temp_path, ANSIBALLZ_PARAMS)
+  File ".ansible/tmp/ansible-tmp-1569048408.38-18927787866074/AnsiballZ_mail.py", line 49, in invoke_module imp.load_module(\'__main__\', mod, module, MOD_DESC)
+  File "/tmp/ansible_mail_payload_fiQfEe/__main__.py", line 397, in 
+  File "/tmp/ansible_mail_payload_fiQfEe/__main__.py", line 286, in main
+  File "/usr/lib64/python2.7/smtplib.py", line 315, in connect self.sock = self._get_socket(host, port, self.timeout)
+  File "/usr/lib64/python2.7/smtplib.py", line 290, in _get_socket return socket.create_connection((host, port), timeout)
+  File "/usr/lib64/python2.7/socket.py", line 571, in create_connection raise err socket.error: [Errno 111] Connection refused',
+  'module_stdout' => '',
+  'msg' => 'MODULE FAILURE
+See stdout/stderr for the exact error',
+  'rc' => 1,
+)
+```
 
 **Few other notification modules in Ansible**
 + hipchat – Send a message to Hipchat
