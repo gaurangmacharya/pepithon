@@ -83,6 +83,8 @@ attach  : A list of path-names of files to attach to the message. Attached files
 ```
 ==**Note:** Please check Host-Port Connection using Ping, Telnet command or else you may get an error saying socket.error: [Errno 111] Connection refused==
 
+Some of the errors I encountered while executing the code are as follows
+
 **Error 1:** When mailing service was not running on Port 25 OR connecion was refused by server
 ```
 An exception occurred during task execution. To see the full traceback, use -vvv. The error was: socket.error: [Errno 111] Connection refused
@@ -131,6 +133,12 @@ array (
   'rc' => 1,
 )
 ```
+
+**Error 5:** When any mandatory parameters is missing like here "Subject" was missing
+```
+fatal: [localhost -> localhost]: FAILED! => {"changed": false, "msg": "missing required arguments: subject"}
+```
+
 **Few other notification modules in Ansible**
 + hipchat – Send a message to Hipchat
 + jabber – Send a message to jabber user or chat room
