@@ -21,11 +21,11 @@ Using GMail SMTP Server you can send E-mails to any domain using your Gmail Cred
 
 ![2-Step Virification Disabled](https://i.imgur.com/6Hxmb2G.png)
 
-**2.3:** Turn ON the **Less Secure App Access** or [Click Here](https://myaccount.google.com/u/0/lesssecureapps)
+**2.3:** Turn ON the Less Secure App Access or [Click Here](https://myaccount.google.com/u/0/lesssecureapps)
 
 ![Less Secure App Access](https://i.imgur.com/hymkYJ6.png)
 
-**2.4:** If **2-Step-Verification** is Enabled, then you will have to create APP Password for your application or device.
+**2.4:** If 2-Step-Verification is Enabled, then you will have to create APP Password for your application or device.
 
 ![2-Step Virification Enabled](https://i.imgur.com/vcQYoGo.png)
 
@@ -37,7 +37,7 @@ Using GMail SMTP Server you can send E-mails to any domain using your Gmail Cred
 
 ==**Note**: It may take an hour or more to reflect any security changes==
 
-**3. Download PHPMailer Library**
+**3. DOWNLOAD PHP LIBRARY**
 + [Click here](https://github.com/PHPMailer/PHPMailer/) for more details about PHP Mailer
 + [Click here](https://github.com/PHPMailer/PHPMailer/archive/master.zip) to download .zip file
 + Unzip the master.zip in your application directory and run following command from your application Directory.
