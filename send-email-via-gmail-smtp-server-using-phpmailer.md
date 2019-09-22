@@ -129,7 +129,7 @@ Invalid address:  (to): recipient-email
 Problem sending email.
 ```
 
-**5.4:** Debugger output after sending email successfully
+**5.4:** Debugger step-by-step output after sending email successfully
 ```
 CLIENT -> SERVER: EHLO NL616
 CLIENT -> SERVER: STARTTLS
