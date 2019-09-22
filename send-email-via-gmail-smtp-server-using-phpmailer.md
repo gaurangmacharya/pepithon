@@ -73,7 +73,7 @@ $mail->Mailer = "smtp";
 **4.3:** Set required Parameters for SMTP Connection like Server, Port and account credentials. SSL and TLS are both Cryptographic protocols that provide authentication and data encryption between servers, machines and applications operating over a network. SSL is the predecessor to TLS.
 
 ``` php
-$mail->SMTPDebug  = 0;  
+$mail->SMTPDebug  = 1;  
 $mail->SMTPAuth   = TRUE;
 $mail->SMTPSecure = "tls";
 $mail->Port       = 587;
@@ -84,10 +84,10 @@ $mail->Password   = "your-gmail-password";
 **4.4:** Set required parameters for Email Header and Body
 ``` php
 $mail->IsHTML(true);
-$mail->AddAddress("recipient-email", "recipient-name");
-$mail->SetFrom("your-email@gmail.com", "set-from-name");
-$mail->AddReplyTo("reply-to-email", "reply-to-name");
-$mail->AddCC("cc-recipient-email", "cc-recipient-name");
+$mail->AddAddress("recipient-email@domain", "recipient-name");
+$mail->SetFrom("from-email@gmail.com", "from-name");
+$mail->AddReplyTo("reply-to-email@domain", "reply-to-name");
+$mail->AddCC("cc-recipient-email@domain", "cc-recipient-name");
 $mail->Subject = "Test is Test Email sent via Gmail SMTP Server using PHP Mailer";
 $content = "<b>This is a Test Email sent via Gmail SMTP Server using PHP mailer class.</b>";
 ```
@@ -103,7 +103,71 @@ if(!$mail->Send()) {
 ```
 [Click here](https://github.com/gaurangmacharya/pepithon/blob/master/send-email-via-gmail-smtp-server-using-phpmailer.php) to download the complete code.
 
-**5. ALTERNATE SOLUTIONS**
+**5. ERRORS**
+
+**5.1:** When SMTP Mail Server Credentials were correct but Application Specific Password was not provided
+```
+SMTP ERROR: Password command failed: 534-5.7.9 Application-specific password required. Learn more at 534 5.7.9  https://support.google.com/mail/?p=InvalidSecondFactor z2sm11041738pfq.58 - gsmtp
+SMTP Error: Could not authenticate.
+CLIENT -> SERVER: QUIT
+SMTP connect() failed. https://github.com/PHPMailer/PHPMailer/wiki/Troubleshooting
+Problem sending email.
+```
+
+**5.2:** When application specific password is incorrect
+```
+SMTP ERROR: Password command failed: 535-5.7.8 Username and Password not accepted. Learn more at 535 5.7.8  https://support.google.com/mail/?p=BadCredentials f3sm5807314pgj.62 - gsmtp
+SMTP Error: Could not authenticate.
+CLIENT -> SERVER: QUIT
+SMTP connect() failed. https://github.com/PHPMailer/PHPMailer/wiki/Troubleshooting
+Problem sending email.
+```
+
+**5.3:** When recipient email is invalid
+```
+Invalid address:  (to): recipient-email
+Problem sending email.
+```
+
+**5.4:** Debugger output after sending email successfully
+```
+CLIENT -> SERVER: EHLO NL616
+CLIENT -> SERVER: STARTTLS
+CLIENT -> SERVER: EHLO NL616
+CLIENT -> SERVER: AUTH LOGIN
+CLIENT -> SERVER: <credentials hidden>
+CLIENT -> SERVER: <credentials hidden>
+CLIENT -> SERVER: MAIL FROM:<from-email@gmail.com>
+CLIENT -> SERVER: RCPT TO:<recipient-email@domain>
+CLIENT -> SERVER: RCPT TO:<cc-recipient-email@domain>
+CLIENT -> SERVER: DATA
+CLIENT -> SERVER: Date: Sun, 22 Sep 2019 05:11:15 +0000
+CLIENT -> SERVER: To: recipient-name <recipient-email@domain>
+CLIENT -> SERVER: From: PHP SMTP Mailer <from-email@gmail.com>
+CLIENT -> SERVER: Cc: cc-recipient-name <cc-recipient-email@domain>
+CLIENT -> SERVER: Reply-To: reply-to-name <reply-to-email@domain>
+CLIENT -> SERVER: Subject: Test email using PHP mailer
+CLIENT -> SERVER: Message-ID: <UlnH3mCpHcFVNBY3Lb3PR2tVs6tvdJlu2F8g5sPN4@NL616>
+CLIENT -> SERVER: X-Mailer: PHPMailer 6.0.7 (https://github.com/PHPMailer/PHPMailer)
+CLIENT -> SERVER: MIME-Version: 1.0
+CLIENT -> SERVER: Content-Type: multipart/alternative;
+CLIENT -> SERVER:  boundary="b1_UlnH3mCpHcFVNBY3Lb3PR2tVs6tvdJlu2F8g5sPN4"
+CLIENT -> SERVER: Content-Transfer-Encoding: 8bit
+CLIENT -> SERVER: This is a multi-part message in MIME format.
+CLIENT -> SERVER: --b1_UlnH3mCpHcFVNBY3Lb3PR2tVs6tvdJlu2F8g5sPN4
+CLIENT -> SERVER: Content-Type: text/plain; charset=us-ascii
+CLIENT -> SERVER: This is a test email using PHP mailer class.
+CLIENT -> SERVER: --b1_UlnH3mCpHcFVNBY3Lb3PR2tVs6tvdJlu2F8g5sPN4
+CLIENT -> SERVER: Content-Type: text/html; charset=us-ascii
+CLIENT -> SERVER: <b>This is a test email using PHP mailer class.</b>
+CLIENT -> SERVER: --b1_UlnH3mCpHcFVNBY3Lb3PR2tVs6tvdJlu2F8g5sPN4--
+CLIENT -> SERVER: QUIT
+email sent.
+```
+
+<br>
+
+**6. ALTERNATE SOLUTIONS**
 + **G Suite SMTP Relay Service:** Send mail from your organization by authenticating with the IP addresses. You can send messages to anyone inside or outside of your domain.
 + **Restricted Gmail SMTP Server:** Send messages to Gmail or G Suite users only. This option does not require you to authenticate.
 + [Click here](https://support.google.com/a/answer/176600) to see detailed comparison of all 3 services.
