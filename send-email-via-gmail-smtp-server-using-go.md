@@ -2,10 +2,21 @@
 
 **1. INTRODUCTION**
 
+Using GMail SMTP Server you can send E-mails to any domain using your Gmail Credentials. Following are some Emails sending limit criterias.
++ Google limits the number of recipients in a single Email and number of Emails can be sent per day.
++ Current limit is 500 Emails in a day or 500 recipients in a single Email.
++ On reaching threshold limits, You can not send messages for 1 to 24 hours.
++ After Suspension Period counters will get reset automatically and the user can resume sending Emails.
++ For more information about Email sending limits refer following links:
+  - Link 1: [Email sending limits](https://support.google.com/a/answer/166852)
+  - Link 2: [Error messages once limit is crossed](https://support.google.com/mail/answer/22839)
+
 SMTP/NET Package implements the Simple Mail Transfer Protocol as defined in RFC 5321.
 ```
 func SendMail(addr string, a Auth, from string, to []string, msg []byte) error
 ```
+<br>
+
 **2. PARAMETERS**
 + **addr**  is a Host Server Address along with Port Number separated by Column ':'
 + **a** is a Authentication response from Gmail
@@ -22,31 +33,29 @@ func SendMail(addr string, a Auth, from string, to []string, msg []byte) error
 
 **3. SETTINGS**
 
-Before sending Emails using Gmail SMTP Server, Change the required setting using Google Account Security Settings or [Click Here](https://myaccount.google.com/security)
+**3.1:** Before sending Emails using Gmail SMTP Server, Change the required setting using Google Account Security Settings or [Click Here](https://myaccount.google.com/security)
 
-**3.1:** Make sure that 2-Step-Verification is Enabled
+![Google Account Security Settings](https://i.imgur.com/6Hxmb2G.png))
 
-Screen: Google Account Security Settings 2-Step-Verification is Disabled
+**3.2:** Make sure that 2-Step-Verification is Disabled
 
-![Google Account Security Settings 2-Step-Verification is Disabled](https://i.imgur.com/6Hxmb2G.png)
+![2-Step Virification Disabled](https://i.imgur.com/6Hxmb2G.png)
 
-Screen: Google Account Security Settings 2-Step-Verification is Enabled
+**3.3:** Turn ON the Less Secure App Access or [Click Here](https://myaccount.google.com/u/0/lesssecureapps)
 
-![Google Account Security Settings 2-Step-Verification Enabled](https://i.imgur.com/vcQYoGo.png)
+![Less Secure App Access](https://i.imgur.com/hymkYJ6.png)
 
-**3.2:** Turn ON/OFF to toggle the Less Secure App Access or [Click Here](https://myaccount.google.com/u/0/lesssecureapps)
+**3.4:** If 2-Step-Verification is Enabled, then you will have to create APP Password for your application or device.
 
-![Less Secure App Access](https://i.imgur.com/mEGa22F.png)
-
-**3.3:** Create APP Password for your application or device.
+![2-Step Virification Enabled](https://i.imgur.com/vcQYoGo.png)
 
 ![Generate App Password](https://i.imgur.com/LHfCxdH.png)
 
-**3.4:** For security precaution, Google may require you to complete this additional step while signing-in. [Click Here](https://accounts.google.com/DisplayUnlockCaptcha) to Allow access to your Google account using new Device/App.
+**3.5:** For security precaution, Google may require you to complete this additional step while signing-in. [Click Here](https://accounts.google.com/DisplayUnlockCaptcha) to Allow access to your Google account using new Device/App.
 
-![New Device-App](https://i.imgur.com/hymkYJ6.png)
+![New Device-App](https://i.imgur.com/mEGa22F.png)
 
-==**Note**: It may take an hour or more to reflect this security changes==
+==**Note**: It may take an hour or more to reflect any security changes==
 
 <br>
 
