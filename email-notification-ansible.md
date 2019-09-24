@@ -1,3 +1,4 @@
+# How to Send an Email Notifications using Ansible?
 
 ## Introduction
 
@@ -21,31 +22,31 @@ Ansible can send emails with attachment via;
 
 Let's understand the different parameters used for making an SMTP connection and to send an email.
 
-#### SMTP Connection
+#### 1. SMTP Connection
 host: The address of the mail server. Default is localhost.
 port: The port number of the mail server to connect. Mostly 25, 465, 587.
 username: If SMTP requires a username.
 password: If SMTP requires a password.
 timeout: Sets the timeout in seconds for connection attempts.
 
-#### Connection Security
+#### 2. Connection Security
 secure= always. The connection sends email only if the connection is encrypted. It fails if the server doesn't accept the encrypted connection.
 secure=never. Before sending an email, the connection doesn't attempt to set up a secure SSL/TLS session. 
 secure=try. Before trying to send an email, the connection attempts to set up a secure SSL/TLS session.
 secure=starttls. Before sending an email, the connection tries to upgrade to a secure SSL/TLS connection. The connection fails in case if unable to do so.
 
-#### Email Headers
+#### 3. Email Headers
 headers : A list of headers that needs to go with the message.
 from    : The email address from which the mail is sent. Default is root.
 to      : The email address(es) of the recipient to whom the mail sent.
 cc      : The email address(es) of the recipient to whom the mail copied.
 bcc     : The email address(es) of the recipient to whom the mail 'blind' copied.
 
-#### Subject
+#### 4. Subject
 subject : The subject of the email to send (mandatory).
 subtype : The minor mime type, can be either plain or HTML. The major type is always text.
 
-#### Email Body
+#### 5. Email Body
 charset : The character set of the email to send. Default is UTF-8
 body    : The body of the email to send.
 attach  : A list of files (full path) to attach to the mail. The content-type should be set to "application/octet-stream" for all the attached files.
@@ -95,7 +96,9 @@ Hope, you are now able to send email notifications from your Ansible set up. In 
 ## Possible Errors/Exceptions
 
 **Error 1:** When mailing service was not running on Port 25 OR connection was refused by server
-An exception occurred during task execution. To see the full traceback, use -vvv. The error was: socket.error: [Errno 111] Connection refused
+An exception occurred during task execution. To see the full traceback, use -vvv. The error was: 
+```
+socket.error: [Errno 111] Connection refused
 fatal: [localhost -> localhost]: FAILED! => 
 array (
   'changed' => false,
@@ -113,38 +116,49 @@ array (
 See stdout/stderr for the exact error',
   'rc' => 1,
 )
-
+```
 **Error 2:** When Gmail account credentials were incorrect
-fatal: [localhost -> localhost]: FAILED! => {"changed": false, "msg": "Authentication to smtp.gmail.com:587 failed, please check your username and/or password", "rc": 1}
+fatal: 
+```
+[localhost -> localhost]: FAILED! => {"changed": false, "msg": "Authentication to smtp.gmail.com:587 failed, please check your username and/or password", "rc": 1}
+```
 
 **Error 3:** When the file to be attached was either missing at a defined location or was inaccessible
-An exception occurred during task execution. To see the full traceback, use -vvv. The error was: IOError: [Errno 2] No such file or directory: '/tmp/ansible.logs'
+An exception occurred during task execution. To see the full traceback, use -vvv. The error was: 
+```
+IOError: [Errno 2] No such file or directory: '/tmp/ansible.logs'
 fatal: [localhost -> localhost]: FAILED! => 
 array (
   'changed' => false,
   'msg' => 'Failed to send mail: can\'t attach file /tmp/ansible.logs: [Errno 2] No such file or directory: \'/tmp/ansible.logs\'',
   'rc' => 1,
 )
-
+```
 **Error 4:** When the recipient email address was incorrect
-An exception occurred during task execution. To see the full traceback, use -vvv. The error was: SMTPRecipientsRefused: {'to-email-1': (550, '5.1.1 <to-email-1>: Recipient address rejected: User unknown in local recipient table')}
+An exception occurred during task execution. To see the full traceback, use -vvv. The error was: 
+```
+SMTPRecipientsRefused: {'to-email-1': (550, '5.1.1 <to-email-1>: Recipient address rejected: User unknown in local recipient table')}
 fatal: [localhost -> localhost]: FAILED! => 
 array (
   'changed' => false,
   'msg' => 'Failed to send mail to \'to-email-1\': {\'to-email-1\': (550, \'5.1.1 : Recipient address rejected: User unknown in local recipient table\')}',
   'rc' => 1,
 )
-
+```
 **Error 5:** When any mandatory parameters is missing like here "Subject" was missing
-fatal: [localhost -> localhost]: FAILED! => {"changed": false, "msg": "missing required arguments: subject"}
+fatal: 
+```
+[localhost -> localhost]: FAILED! => {"changed": false, "msg": "missing required arguments: subject"}
+```
 
 Few Other Important Notification Sending Modules In Ansible:
-hipchat - Send a message to Hipchat
-jabber - Send a message to jabber user or chat room
-rabbitmq_publish - Publish a message to a RabbitMQ queue
-rocketchat - Send notifications to Rocket Chat
-say - Makes a computer to speak
-slack - Send Slack notifications
-telegram - module for sending notifications via telegram
+
+- hipchat - Send a message to Hipchat
+- jabber - Send a message to jabber user or chat room
+- rabbitmq_publish - Publish a message to a RabbitMQ queue
+- rocketchat - Send notifications to Rocket Chat
+- say - Makes a computer to speak
+- slack - Send Slack notifications
+- telegram - module for sending notifications via telegram
 
 **In case you are facing some issues which are not listed above in the tutorial, or you have some suggestions, then please feel free to contribute below in comments.**
