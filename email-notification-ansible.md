@@ -23,35 +23,46 @@ Ansible can send emails with attachment via;
 Let's understand the different parameters used for making an SMTP connection and to send an email.
 
 #### 1. SMTP Connection
+```
 host: The address of the mail server. Default is localhost.
 port: The port number of the mail server to connect. Mostly 25, 465, 587.
 username: If SMTP requires a username.
 password: If SMTP requires a password.
 timeout: Sets the timeout in seconds for connection attempts.
+```
 
 #### 2. Connection Security
+```
 secure= always. The connection sends email only if the connection is encrypted. It fails if the server doesn't accept the encrypted connection.
 secure=never. Before sending an email, the connection doesn't attempt to set up a secure SSL/TLS session. 
 secure=try. Before trying to send an email, the connection attempts to set up a secure SSL/TLS session.
 secure=starttls. Before sending an email, the connection tries to upgrade to a secure SSL/TLS connection. The connection fails in case if unable to do so.
+```
 
 #### 3. Email Headers
+```
 headers : A list of headers that needs to go with the message.
 from    : The email address from which the mail is sent. Default is root.
 to      : The email address(es) of the recipient to whom the mail sent.
 cc      : The email address(es) of the recipient to whom the mail copied.
 bcc     : The email address(es) of the recipient to whom the mail 'blind' copied.
+```
 
 #### 4. Subject
+```
 subject : The subject of the email to send (mandatory).
 subtype : The minor mime type, can be either plain or HTML. The major type is always text.
+```
 
 #### 5. Email Body
+```
 charset : The character set of the email to send. Default is UTF-8
 body    : The body of the email to send.
 attach  : A list of files (full path) to attach to the mail. The content-type should be set to "application/octet-stream" for all the attached files.
+```
 
 ## Code to Send Email Without Attachment Using Gmail SMTP Server
+```
 - hosts:
     - localhost
   tasks:
@@ -65,8 +76,10 @@ attach  : A list of files (full path) to attach to the mail. The content-type sh
         subject: Ansible Report
         body: System {{ ansible_hostname }} has been successfully provisioned.
       delegate_to: localhost
+```
 
 ## Code to Send Email With Attachment Using In-House Email Server
+```
 - hosts:
     - localhost
   tasks:
@@ -88,8 +101,8 @@ attach  : A list of files (full path) to attach to the mail. The content-type sh
         - X-Special="Write something special about this Email"
         charset: us-ascii
       delegate_to: localhost
-
-> Note: Please check Host-Port Connection using Ping, Telnet command or else you may get an error saying socket.error: [Errno 111] connection refused==
+```
+> Note: Please check Host-Port Connection using Ping, Telnet command or else you may get an error saying socket.error: [Errno 111] connection refused
 
 Hope, you are now able to send email notifications from your Ansible set up. In case you are unable to send emails and getting some error then, please refer the below list:
 
