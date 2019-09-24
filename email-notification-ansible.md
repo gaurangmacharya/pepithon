@@ -33,10 +33,10 @@ timeout: Sets the timeout in seconds for connection attempts.
 
 #### 2. Connection Security
 ```
-secure= always. The connection sends email only if the connection is encrypted. It fails if the server doesn't accept the encrypted connection.
-secure=never. Before sending an email, the connection doesn't attempt to set up a secure SSL/TLS session. 
-secure=try. Before trying to send an email, the connection attempts to set up a secure SSL/TLS session.
-secure=starttls. Before sending an email, the connection tries to upgrade to a secure SSL/TLS connection. The connection fails in case if unable to do so.
+secure = always.   Sends email only if connection is encrypted. It fails if the server doesn't accept the encrypted connection.
+secure = never.    Before sending an email, the connection doesn't attempt to set up a secure SSL/TLS session. 
+secure = try.      Before trying to send an email, the connection attempts to set up a secure SSL/TLS session.
+secure = starttls. Before sending an email, the connection tries to upgrade to a secure SSL/TLS connection. The connection fails in case if unable to do so.
 ```
 
 #### 3. Email Headers
