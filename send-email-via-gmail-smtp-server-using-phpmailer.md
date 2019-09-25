@@ -1,60 +1,54 @@
 # How to send an E-mail via GMail SMTP Server using PHP
 
-**1. INTRODUCTION**
+## Introduction
 
-Using GMail SMTP Server you can send E-mails to any domain using your Gmail Credentials. Following are some Emails sending limit criterias.
-+ Google limits the number of recipients in a single Email and number of Emails can be sent per day.
-+ Current limit is 500 Emails in a day or 500 recipients in a single Email.
-+ On reaching threshold limits, You can not send messages for 1 to 24 hours.
-+ After Suspension Period counters will get reset automatically and the user can resume sending Emails.
-+ For more information about Email sending limits refer following links:
-  - Link 1: [Email sending limits](https://support.google.com/a/answer/166852)
-  - Link 2: [Error messages once limit is crossed](https://support.google.com/mail/answer/22839)
+Using the Gmail's SMTP Server, you can send emails to any domain using your Gmail Credentials. Following are some email sending limit criteria:
++ Google limits the number of recipients in a single email and the number of emails that can be sent per day.
++ The current limit is 500 Emails in a day or 500 recipients in a single email.
++ On reaching threshold limits, you won't be able to send messages for the next 24 hours.
++ After the suspension period, the counter gets reset automatically, and the user can resume sending Emails.
++ For more information about email sending limits refer the following links:
+ + [Email sending limits](https://support.google.com/a/answer/166852 "Email sending limits")
+ + [Error messages once limit is crossed](https://support.google.com/mail/answer/22839 "Error messages once limit is crossed")
 
-**2. SETTINGS**
+## Settings to be updated on Google
 
-**2.1:** Before sending Emails using Gmail SMTP Server, Change the required setting using Google Account Security Settings or [Click Here](https://myaccount.google.com/security)
+1. Before sending emails using the Gmail's SMTP Server, Change the required settings under your Google Account Security Settings or [Click here](https://myaccount.google.com/security "Click here").
+![Google Account Security Settings](https://i.imgur.com/6Hxmb2G.png)
 
-![Google Account Security Settings](https://i.imgur.com/6Hxmb2G.png))
-
-**2.2:** Make sure that 2-Step-Verification is Disabled
-
+2. Make sure that 2-Step-Verification is disabled.
 ![2-Step Virification Disabled](https://i.imgur.com/6Hxmb2G.png)
 
-**2.3:** Turn ON the Less Secure App Access or [Click Here](https://myaccount.google.com/u/0/lesssecureapps)
-
+3. Turn ON the "Less Secure App" access or Click [here](https://myaccount.google.com/u/0/lesssecureapps "here").
 ![Less Secure App Access](https://i.imgur.com/hymkYJ6.png)
 
-**2.4:** If 2-Step-Verification is Enabled, then you will have to create APP Password for your application or device.
-
+4. If 2-step-verification is enabled, then you will have to create app password for your application or device.
 ![2-Step Virification Enabled](https://i.imgur.com/vcQYoGo.png)
 
-![Generate App Password](https://i.imgur.com/LHfCxdH.png)
-
-**2.5:** For security precaution, Google may require you to complete this additional step while signing-in. [Click Here](https://accounts.google.com/DisplayUnlockCaptcha) to Allow access to your Google account using new Device/App.
-
+5. For security measures, Google may require you to complete this additional step while signing-in. Click here to allow access to your Google account using the new device/app.
 ![New Device-App](https://i.imgur.com/mEGa22F.png)
 
-==**Note**: It may take an hour or more to reflect any security changes==
+*Note: It may take an hour or more to reflect any security changes*
 
-**3. DOWNLOAD PHP LIBRARY**
-+ [Click here](https://github.com/PHPMailer/PHPMailer/) for more details about PHP Mailer
+## Writing the PHP Code to Send Email using Gmail SMTP
+
+**Step 1:** Download PHP Library
++ [Click here](https://github.com/PHPMailer/PHPMailer/) for more details about PHPMailer
 + [Click here](https://github.com/PHPMailer/PHPMailer/archive/master.zip) to download .zip file
-+ Unzip the master.zip in your application directory and run following command from your application Directory.
++ Unzip the master.zip in your application directory and run following command from your application directory.
 
 ```
 composer require phpmailer/phpmailer
 ```
 [Composer](https://getcomposer.org/) is the recommended way to install PHPMailer.
 
-**4. PHP CODE**
-+ Using your Gmail Credentials, Connect to Host smtp.gmail.com
-  - On port 465, if you’re using SSL
-  - On port 587, if you’re using TLS
+**Step 2:** Writing the PHP Code to make an SMTP connection
++ Using your Gmail credentials, connect to host **"smtp.gmail.com"**
+  - Use port 465, if want SSL
+  - Use port 587, if want TLS
 + [Click here](https://github.com/PHPMailer/PHPMailer/wiki/Tutorial) for some more Examples and Tutorials of PHPMailer
 
-
-**4.1:** Include packages and files for PHP Mailers and SMTP Protocol
+**Step 3:** Include packages and files for PHPMailer and SMTP protocol:
 ``` php
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -63,14 +57,14 @@ require 'PHPMailer-master/src/PHPMailer.php';
 require 'PHPMailer-master/src/SMTP.php';
 ```
 
-**4.2:** Initialize PHP Mailer and set SMTP as mailing Protocol 
+**Step 4:** Initialize PHP Mailer and set SMTP as mailing protocol:
 ``` php
 $mail = new PHPMailer();
 $mail->IsSMTP();
 $mail->Mailer = "smtp";
 ```
 
-**4.3:** Set required Parameters for SMTP Connection like Server, Port and account credentials. SSL and TLS are both Cryptographic protocols that provide authentication and data encryption between servers, machines and applications operating over a network. SSL is the predecessor to TLS.
+**Step 5:** Set required parameters for making an SMTP connection like server, port and account credentials. SSL and TLS are both cryptographic protocols that provide authentication and data encryption between servers, machines and applications operating over a network. SSL is the predecessor to TLS.
 
 ``` php
 $mail->SMTPDebug  = 1;  
@@ -81,7 +75,7 @@ $mail->Host       = "smtp.gmail.com";
 $mail->Username   = "your-email@gmail.com";
 $mail->Password   = "your-gmail-password";
 ```
-**4.4:** Set required parameters for Email Header and Body
+**Step 6:** Set required parameters for email header and body:
 ``` php
 $mail->IsHTML(true);
 $mail->AddAddress("recipient-email@domain", "recipient-name");
@@ -91,7 +85,7 @@ $mail->AddCC("cc-recipient-email@domain", "cc-recipient-name");
 $mail->Subject = "Test is Test Email sent via Gmail SMTP Server using PHP Mailer";
 $content = "<b>This is a Test Email sent via Gmail SMTP Server using PHP mailer class.</b>";
 ```
-**4.5:** Send the Email and catch required exceptions
+**Step 7:** Send the email and catch required exceptions:
 ``` php
 $mail->MsgHTML($content); 
 if(!$mail->Send()) {
@@ -101,11 +95,14 @@ if(!$mail->Send()) {
   echo "Email sent successfully";
 }
 ```
+
+
+## Working Code to Send Email via Gmail SMTP using PHP
 [Click here](https://github.com/gaurangmacharya/pepithon/blob/master/send-email-via-gmail-smtp-server-using-phpmailer.php) to download the complete code.
 
-**5. ERRORS**
+## List of Possible Errors And Exceptions
 
-**5.1:** When SMTP Mail Server Credentials were correct but Application Specific Password was not provided
+**Error 1:** When SMTP Mail Server Credentials were correct but Application Specific Password was not provided
 ```
 SMTP ERROR: Password command failed: 534-5.7.9 Application-specific password required. Learn more at 534 5.7.9  https://support.google.com/mail/?p=InvalidSecondFactor z2sm11041738pfq.58 - gsmtp
 SMTP Error: Could not authenticate.
@@ -114,7 +111,7 @@ SMTP connect() failed. https://github.com/PHPMailer/PHPMailer/wiki/Troubleshooti
 Problem sending email.
 ```
 
-**5.2:** When application specific password is incorrect
+**Error 2:** When application specific password is incorrect
 ```
 SMTP ERROR: Password command failed: 535-5.7.8 Username and Password not accepted. Learn more at 535 5.7.8  https://support.google.com/mail/?p=BadCredentials f3sm5807314pgj.62 - gsmtp
 SMTP Error: Could not authenticate.
@@ -123,13 +120,13 @@ SMTP connect() failed. https://github.com/PHPMailer/PHPMailer/wiki/Troubleshooti
 Problem sending email.
 ```
 
-**5.3:** When recipient email is invalid
+**Error 3:** When recipient email is invalid
 ```
 Invalid address:  (to): recipient-email
 Problem sending email.
 ```
 
-**5.4:** Debugger step-by-step output after sending email successfully
+**Error 4:** Debugger step-by-step output after sending email successfully
 ```
 CLIENT -> SERVER: EHLO NL616
 CLIENT -> SERVER: STARTTLS
@@ -165,9 +162,7 @@ CLIENT -> SERVER: QUIT
 email sent.
 ```
 
-<br>
+## Conclusion
+Hope the steps explained above were useful and you were able to successfully send mail from your Gmail SMTP server using PHP. Feel free to contribute, in case you encountered some issue which is not listed as a part of this tutorials. Use below comments section to ask/share any feedback.
 
-**6. ALTERNATE SOLUTIONS**
-+ **G Suite SMTP Relay Service:** Send mail from your organization by authenticating with the IP addresses. You can send messages to anyone inside or outside of your domain.
-+ **Restricted Gmail SMTP Server:** Send messages to Gmail or G Suite users only. This option does not require you to authenticate.
-+ [Click here](https://support.google.com/a/answer/176600) to see detailed comparison of all 3 services.
+<? Happy Coding ?>
